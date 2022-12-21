@@ -18,7 +18,7 @@ pipeline {
                     timeout(time: 1, unit: "HOURS") {
                         def qualitygate = waitForQualityGate()
                         if (qualitygate.status != "OK") {
-                            error "Pipeline aborted due to qg sonar"
+                            waitForQualityGate abortPipeline: true
                         }
                     }
                 }
