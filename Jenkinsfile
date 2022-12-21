@@ -10,20 +10,15 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'sonarscan';
+                    sh 'npm install -D jest-sonar-reporter sonarqube-scanner'
                     withSonarQubeEnv('sonarasus') {
-                        sh "${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
+                        sh "npx sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
                     }
-                }
-            }
-        }
-        stage("Quality gate") {
-            steps {
-                script {
-                    def qualitygate = waitForQualityGate()
-                    sleep(10)
-                    if (qualitygate.status != "OK") {
-                        waitForQualityGate abortPipeline: true
+                    timeout(time: 1, unit: "HOURS") {
+                        def qualitygate = waitForQualityGate()
+                        if (qualitygate.status != "OK") {
+                            error "Pipeline aborted due to qg sonar"
+                        }
                     }
                 }
             }
