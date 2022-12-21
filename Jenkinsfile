@@ -11,6 +11,7 @@ pipeline {
             steps {
                 script {
                     sh 'npm install -D jest-sonar-reporter sonarqube-scanner'
+                    sh 'npm install -g sonarqube-scanner'
                     withSonarQubeEnv('sonarasus') {
                         sh "sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
                     }
