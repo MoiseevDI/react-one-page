@@ -10,10 +10,10 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>
-            Test react app for PDRIS 2          
+            Test react app for PDRIS 4        
           </h1>
           <div>
-            This is clean react app without back
+            This is clean react app without back for testing pipeline
           </div>
         </header>
       </div>
