@@ -1,17 +1,22 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000 -u root:root'
-            reuseNode true
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'node:lts-bullseye-slim' 
+    //         args '-p 3000:3000 -u root:root'
+    //         reuseNode true
+    //     }
+    // }
+    agent any
+    tool {nodejs "node" }
     stages {
+        stage('Install dependencies') { 
+            steps {
+                sh 'npm install -g' 
+            }
+        }
         stage('SonarQube analysis') {
             steps {
                 script {
-                    sh 'npm install -D jest-sonar-reporter sonarqube-scanner'
-                    sh 'npm install -g sonarqube-scanner'
                     withSonarQubeEnv('sonarasus') {
                         sh "sonar-scanner"
                     }
@@ -22,11 +27,6 @@ pipeline {
                         }
                     }
                 }
-            }
-        }
-        stage('Install dependencies') { 
-            steps {
-                sh 'npm install' 
             }
         }
         stage('Test') {
