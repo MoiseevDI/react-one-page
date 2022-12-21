@@ -12,7 +12,7 @@ pipeline {
                 script {
                     sh 'npm install -D jest-sonar-reporter sonarqube-scanner'
                     withSonarQubeEnv('sonarasus') {
-                        sh "npx sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
+                        sh "sonar-scanner -Dsonar.projectKey=reactapp -Dsonar.projectName=reactapp"
                     }
                     timeout(time: 1, unit: "HOURS") {
                         def qualitygate = waitForQualityGate()
