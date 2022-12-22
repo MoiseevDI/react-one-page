@@ -24,12 +24,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "jestSonar": {
-    "sonar56x": true,
-    "reportPath": "testResults",
-    "reportFile": "sonar-report.xml",
-    "indent": 4
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
