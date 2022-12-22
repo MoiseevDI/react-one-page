@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-sonar-reporter/index.js",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "jestSonar": {
