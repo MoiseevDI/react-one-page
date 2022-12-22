@@ -1,11 +1,4 @@
 pipeline {
-    // agent {
-    //     docker {
-    //         image 'node:lts-bullseye-slim' 
-    //         args '-p 3000:3000 -u root:root'
-    //         reuseNode true
-    //     }
-    // }
     agent any
     tools {nodejs "node" }
     stages {
