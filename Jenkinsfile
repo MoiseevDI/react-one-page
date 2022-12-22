@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+        registry = "moiseevdi/front-onepage-pdris"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     agent any
     tools {nodejs "node" }
     stages {
@@ -25,6 +30,32 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        stage('Building image') {
+            steps{
+                script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
