@@ -1,2 +1,2 @@
 # react-one-page
-Onepage react app for testing Jenkins pipelines with some plugins
+Onepage react app for ppprp hw1
