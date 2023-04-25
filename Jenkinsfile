@@ -1,27 +1,12 @@
 pipeline {
     environment {
-        registry = "moiseevdi/front-onepage-pdris"
+        registry = "moiseevdi/ip-simple-ui"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
     agent any
     tools {nodejs "node" }
     stages {
-        stage('SonarQube analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('sonarasus') {
-                        sh "sonar-scanner"
-                    }
-                    timeout(time: 1, unit: "HOURS") {
-                        def qualitygate = waitForQualityGate()
-                        if (qualitygate.status != "OK") {
-                            waitForQualityGate abortPipeline: true
-                        }
-                    }
-                }
-            }
-        }
         stage('Install dependencies') { 
             steps {
                 sh 'npm install' 
