@@ -39,10 +39,10 @@ class App extends React.Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>
-              Test react app for PDRIS          
+              Test app with istio for ПППРП          
             </h1>
             <p>
-              Get all test strings from postgresql DB by fastapi query:
+              Getting stats for nvidia rtx 3060 from https://api.minerstat.com/:
             </p>
             <p>Loading...</p>;
           </header>
@@ -57,10 +57,10 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>
-            Test react app for PDRIS          
+            Test app with istio for ПППРП          
           </h1>
           <div>
-            Get all test strings from postgresql DB by fastapi query:
+            Stats for nvidia rtx 3060 from https://api.minerstat.com/:
           </div>
           <div>{models.message.toString()}</div>
         </header>
