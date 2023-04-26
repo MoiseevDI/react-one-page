@@ -7,7 +7,7 @@ class App extends React.Component {
   state = { isLoaded: false, models: [] };
 
   componentDidMount() {
-    fetch("api/3060stats", {
+    fetch("http://api/3060stats", {
       method: "GET",
       headers: {
           'Content-Type': 'application/json'
