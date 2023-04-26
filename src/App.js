@@ -10,7 +10,7 @@ class App extends React.Component {
   state = { isLoaded: false, models: [] };
 
   componentDidMount() {
-    fetch("http://api/newssa", {
+    fetch("/api/newssa", {
       method: "GET",
       headers: {
           'Content-Type': 'application/json'
