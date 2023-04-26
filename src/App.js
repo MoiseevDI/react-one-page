@@ -44,7 +44,7 @@ class App extends React.Component {
             <p>
               Getting stats for nvidia rtx 3060 from https://api.minerstat.com/:
             </p>
-            <p>Loading...</p>;
+            <p>Loading...</p>
           </header>
         </div>
       );
