@@ -1,13 +1,16 @@
 import logo from './ddlogo.svg';
 import './App.css';
 import React from "react"
+import Paper from 'material-ui/Paper';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Polarity from "./components/Polarity";
 
 class App extends React.Component {
 
   state = { isLoaded: false, models: [] };
 
   componentDidMount() {
-    fetch("http://api/3060stats", {
+    fetch("http://api/newssa", {
       method: "GET",
       headers: {
           'Content-Type': 'application/json'
@@ -31,38 +34,31 @@ class App extends React.Component {
   render() {
 
     const { isLoaded, models } = this.state;
+    let comps = [];
 
-    console.log(models)
-    if (!isLoaded) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1>
-              Test app with istio for ПППРП          
-            </h1>
-            <p>
-              Getting stats for nvidia rtx 3060 from https://api.minerstat.com/:
-            </p>
-            <p>Loading...</p>
-          </header>
-        </div>
-      );
-    }
-
-    console.log(models)
+    models.forEach(function(item, i, models) {
+      comps.push(<Polarity sentence={item["sentence"]} polarity={item["polarity"]}/>)
+    });
   
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1>
-            Test app with istio for ПППРП          
+            Тестовое приложение istio + k8s для ПППРП
           </h1>
           <div>
-            Stats for nvidia rtx 3060 from https://api.minerstat.com/:
+            Анализ тональности заголовков последних новостей
           </div>
-          <div>{models.message.toString()}</div>
+          <div className="centerize">
+          <MuiThemeProvider>
+              <Paper zDepth={1} className="content">
+                  {comps.map(function(object, i){
+                      return object;
+                  })}
+              </Paper>
+          </MuiThemeProvider>
+          </div>
         </header>
       </div>
     )
