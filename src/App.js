@@ -1,8 +1,8 @@
 import logo from './ddlogo.svg';
 import './App.css';
-import React from "react"
-import Paper from 'material-ui/Paper';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from "react";
+import { Paper } from '@mui/material';
+import {MuiThemeProvider} from "@mui/material/styles";
 import Polarity from "./components/Polarity";
 
 class App extends React.Component {
@@ -51,13 +51,11 @@ class App extends React.Component {
             Анализ тональности заголовков последних новостей
           </div>
           <div className="centerize">
-          <MuiThemeProvider>
-              <Paper zDepth={1} className="content">
-                  {comps.map(function(object, i){
-                      return object;
-                  })}
-              </Paper>
-          </MuiThemeProvider>
+            <Paper zDepth={1} className="content">
+                {comps.map(function(object, i){
+                    return object;
+                })}
+            </Paper>
           </div>
         </header>
       </div>
